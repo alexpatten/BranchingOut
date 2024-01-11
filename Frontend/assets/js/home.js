@@ -1,7 +1,15 @@
-function openIframe() {
-    document.getElementById('iframeContainer').style.display = 'block';
+function openLoginIframe() {
+    document.getElementById('loginiframeContainer').style.display = 'block';
 }
 
-function closeIframe() {
-    document.getElementById('iframeContainer').style.display = 'none';
+function closeLoginIframe() {
+    document.getElementById('loginiframeContainer').style.display = 'none';
+}
+
+function openRegisterIframe() {
+    document.getElementById('registeriframeContainer').style.display = 'block';
+}
+
+function closeRegisterIframe() {
+    document.getElementById('registeriframeContainer').style.display = 'none';
 }
