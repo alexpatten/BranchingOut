@@ -1,4 +1,4 @@
-﻿.cred-container {
+.cred-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -37,36 +37,4 @@
 
 .Btn:hover {
     transform: scale(1.02);
-}
-
-#loginCloseBtn,#registerCloseBtn {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    cursor: pointer;
-    font-size: 20px;
-    color: #333;
-}
-
-/* Adjust the max-width and max-height values based on your preference */
-#loginiframeContainer,
-#registeriframeContainer {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    overflow: hidden; /* Ensure no scroll bars appear */
-    box-sizing: content-box;
-    border-radius: 10px;
-    z-index: 9999;
-}
-
-iframe {
-    border: none;
-    box-sizing: content-box;
-    z-index: 9998;
 }
