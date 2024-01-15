@@ -1,9 +1,8 @@
--- User Table
 CREATE TABLE [User] (
-    UserID INT PRIMARY KEY,
-    Username VARCHAR(255) NOT NULL,
-    Password VARCHAR(255) NOT NULL,
-    Email VARCHAR(255) NOT NULL
+    UserID INT IDENTITY(1,1) PRIMARY KEY,
+    Username NVARCHAR(50),
+    Password NVARCHAR(50),
+    Email NVARCHAR(100)
 );
 
 -- Family Table
