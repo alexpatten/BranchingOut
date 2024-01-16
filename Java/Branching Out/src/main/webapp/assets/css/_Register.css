@@ -46,3 +46,9 @@ body, html {
 .Btn:hover {
     transform: scale(1.02);
 }
+
+/* Add this to your CSS to hide the label initially */
+.hidden {
+    display: none;
+    color: red;
+}

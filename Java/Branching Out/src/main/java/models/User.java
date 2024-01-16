@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import database.DatabaseConnection;
 
 public class User {
@@ -13,6 +12,50 @@ public class User {
     private String username;
     private String password;
     private String email;
+    
+    public static boolean verifyUsername(String username) {
+    	boolean userExists = false; // Default value if user is not found
+        String sql = "SELECT Username FROM User WHERE Username = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, username);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                	userExists = true;
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return userExists;
+    }
+    
+    public static boolean verifyEmail(String email) {
+    	boolean emailExists = false; // Default value if user is not found
+        String sql = "SELECT Email FROM User WHERE Email = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, email);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                	emailExists = true;
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return emailExists;
+    }
 
     public static User getUserById(int userID) {
         User user = null;
