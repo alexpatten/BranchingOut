@@ -27,9 +27,16 @@ function performRegister() {
 				if (data.includes('Username already exists')) {
                 	errorMsgLabel.textContent = 'Username already exists.';
 	            }
-	            else {
+	            else if (data.includes('Email already exists')) {
 	                errorMsgLabel.textContent = 'Email already exists.';
 	            }
+	            else {
+					// You can write out the actual data received in the response for debugging purposes
+			        console.log('Unexpected response data:', data);
+			
+			        // Optionally, you can set a generic error message
+			        errorMsgLabel.textContent = 'Unexpected error during registration.';
+				}
 	
 	            errorMsgLabel.classList.remove('hidden');
 			}

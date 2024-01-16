@@ -22,22 +22,25 @@ public class RegistrationController extends HttpServlet {
         String email = request.getParameter("email");
         
         boolean userExists = User.verifyUsername(username);
-        boolean emailExists = User.verifyUsername(email);
+        boolean emailExists = User.verifyEmail(email);
         boolean registrationSuccess = false;
         
-		if(userExists == true && emailExists == true) {
+		if(!userExists == true && !emailExists == true) {
 			registrationSuccess = registerUser(username, password, email);
 		}
+		
+		response.getWriter().println(registrationSuccess);
 
         if (registrationSuccess) {
             response.getWriter().println("Registration successful!");
         } else {
-        	if (userExists == true) {
+        	if (userExists) {
         		response.getWriter().println("Registration failed: Username already exists.");
         	}
-            if (emailExists == true) {
+            if (emailExists) {
             	response.getWriter().println("Registration failed: Email already exists.");
             }
+            else { response.getWriter().println("Unexpected error"); }
         }
     }
 

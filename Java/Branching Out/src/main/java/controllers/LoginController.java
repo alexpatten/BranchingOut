@@ -23,6 +23,5 @@ public class LoginController extends HttpServlet {
         } else {
             response.getWriter().println("User not found.");
         }
-
     }
 }
