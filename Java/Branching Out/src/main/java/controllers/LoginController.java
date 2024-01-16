@@ -8,18 +8,14 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import models.User;
 
+@SuppressWarnings("serial")
 @WebServlet("/MyLogin")
 public class LoginController extends HttpServlet {
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = -8631292795728537363L;
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {   	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String inputUsername = request.getParameter("username");
         String inputPassword = request.getParameter("password");
-
-        int userId = User.getUserIdByUsernameAndPassword(inputUsername, inputPassword);
+    	
+    	int userId = User.getUserIdByUsernameAndPassword(inputUsername, inputPassword);
 
         if (userId != -1) {
             // User found, userId contains the user's ID
@@ -27,5 +23,6 @@ public class LoginController extends HttpServlet {
         } else {
             response.getWriter().println("User not found.");
         }
+
     }
 }

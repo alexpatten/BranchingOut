@@ -3,6 +3,7 @@
 	<name>Servers</name>
 	<comment></comment>
 	<projects>
+		<project>Branching Out</project>
 	</projects>
 	<buildSpec>
 	</buildSpec>

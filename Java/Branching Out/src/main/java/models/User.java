@@ -14,8 +14,6 @@ public class User {
     private String password;
     private String email;
 
-    // Constructors, getters, setters, and other methods...
-
     public static User getUserById(int userID) {
         User user = null;
         String sql = "SELECT * FROM User WHERE UserID = ?";
@@ -58,7 +56,7 @@ public class User {
                 }
             }
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

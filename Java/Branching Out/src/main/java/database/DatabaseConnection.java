@@ -6,20 +6,22 @@ import java.sql.SQLException;
 
 public class DatabaseConnection {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/BranchingOut";
+	private static final String URL = "jdbc:mysql://localhost:3306/BranchingOut";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "password";
     
+    // Static block to load the MySQL JDBC driver during class initialization
     static {
         try {
-            // Register the MySQL JDBC driver
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
-            throw new RuntimeException("Error loading MySQL JDBC driver", e);
+            System.err.println("Error loading MySQL JDBC driver");
+            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
-    public static Connection getConnection() {
+    public static Connection getConnection() {    	
         try {
             return DriverManager.getConnection(URL, USERNAME, PASSWORD);
         } catch (SQLException e) {
