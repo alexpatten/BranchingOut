@@ -16,7 +16,7 @@ function performLogin() {
             // Check if login was successful (modify this condition based on your logic)
             if (data.includes('User found')) {
                 // Redirect to main.html
-                window.parent.location.href = 'main.html';
+                window.parent.location.href = 'secured/main.html';
             }
         })
         .catch(error => console.error('Error:', error));

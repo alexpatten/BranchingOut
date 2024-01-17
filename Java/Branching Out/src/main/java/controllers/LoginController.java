@@ -6,6 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import models.User;
 
 @SuppressWarnings("serial")
@@ -18,7 +19,9 @@ public class LoginController extends HttpServlet {
     	int userId = User.getUserIdByUsernameAndPassword(inputUsername, inputPassword);
 
         if (userId != -1) {
-            // User found, userId contains the user's ID
+        	// User found, userId contains the user's ID
+            HttpSession session = request.getSession(true);
+            session.setAttribute("userId", userId);
             response.getWriter().println("User found. UserID: " + userId);
         } else {
             response.getWriter().println("User not found.");

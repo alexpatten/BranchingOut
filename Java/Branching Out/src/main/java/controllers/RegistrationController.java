@@ -29,8 +29,6 @@ public class RegistrationController extends HttpServlet {
 			registrationSuccess = registerUser(username, password, email);
 		}
 		
-		response.getWriter().println(registrationSuccess);
-
         if (registrationSuccess) {
             response.getWriter().println("Registration successful!");
         } else {
