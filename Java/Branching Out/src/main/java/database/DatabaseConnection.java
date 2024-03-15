@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class DatabaseConnection {
 
-	private static final String URL = "branchingout.cd4448egu1au.us-east-1.rds.amazonaws.com";
+	private static final String URL = "jdbc:mysql://branchingout.cd4448egu1au.us-east-1.rds.amazonaws.com:3306/BranchingOut";
     private static final String USERNAME = "admin";
     private static final String PASSWORD = "ksJgwqMVHLiFT1RjwMpK";
     
