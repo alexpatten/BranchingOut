@@ -6,9 +6,9 @@ import java.sql.SQLException;
 
 public class DatabaseConnection {
 
-	private static final String URL = "jdbc:mysql://branchingout.cd4448egu1au.us-east-1.rds.amazonaws.com:3306/BranchingOut";
-    private static final String USERNAME = "admin";
-    private static final String PASSWORD = "ksJgwqMVHLiFT1RjwMpK";
+	private static final String URL = "jdbc:mysql://localhost:3306/BranchingOut";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "password";
     
     // Static block to load the MySQL JDBC driver during class initialization
     static {
