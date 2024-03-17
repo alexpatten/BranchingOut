@@ -21,6 +21,7 @@ CREATE TABLE User (
     Email NVARCHAR(100),
     RoleID INT,
     FOREIGN KEY (RoleID) REFERENCES Roles(role_id)
+	UserID CHAR(36) DEFAULT UUID() AFTER Email
 );
 
 -- Create Family Table

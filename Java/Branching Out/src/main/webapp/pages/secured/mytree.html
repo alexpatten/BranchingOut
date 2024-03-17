@@ -40,13 +40,34 @@
                     { type: 'textbox', label: 'Full Name', binding: 'name' },
                     { type: 'textbox', label: 'Photo Url', binding: 'ImgUrl', btn: 'Upload' }
                 ]
-            }/*,
-            nodes: [
-                { id: 1, pids: [2], name: "Amber McKenzie", gender: "female" },
-                { id: 2, pids: [1], name: "Ava Field", gender: "male" },
-                { id: 3, mid: 1, fid: 2, name: "Peter Stevens", gender: "male" }
-            ]*/
+            }
         });
+        
+     	// Function to update a node and trigger TreeController
+        function updateNodeInController(nodeId, nodeName) {
+            $.ajax({
+                type: 'POST',
+                url: '../../TreeUpdate', // Endpoint URL
+                data: {
+                    nodeId: nodeId,
+                    nodeName: nodeName
+                },
+                success: function (response) {
+                    console.log(response); // Log the response (optional)
+                    alert('Node updated successfully');
+                },
+                error: function (error) {
+                    console.error('Error updating node:', error);
+                    alert('Error updating node');
+                }
+            });
+        }
+
+        /*/ Example usage: Call updateNodeInController when a node is updated
+        family.onUpdateNode(function (args) {
+		    updateNodeInController(args.node.id, args.node.name);
+		});
+        */
     </script>
 </body>
 
