@@ -1,0 +1,69 @@
+body{
+    background-color: rgb(255, 255, 255);
+
+    #header{
+        width: 200px;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #logo img{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #description{
+        width: 750px;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #johan{
+        width: 150px;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #alex{
+        width: 200px;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #john{
+        width: 125px;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #rahshann{
+        width: 200px;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #aaron{
+        width: 250px;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
