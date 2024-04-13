@@ -27,7 +27,9 @@ CREATE TABLE User (
 -- Create Family Table
 CREATE TABLE Family (
     FamilyID INT PRIMARY KEY,
-    FamilyName VARCHAR(255) NOT NULL
+    FamilyName VARCHAR(255) NOT NULL,
+    UserID INT, -- New column for the foreign key
+    FOREIGN KEY (UserID) REFERENCES User(UserID) -- Foreign key constraint
 );
 
 -- Create FamilyMember Table
@@ -65,6 +67,7 @@ CREATE TABLE Event (
     Location VARCHAR(255),
     Description TEXT,
     FamilyID INT,
+	FOREIGN KEY (UserID) REFERENCES User(UserID),
     FOREIGN KEY (FamilyID) REFERENCES Family(FamilyID)
 );
 

@@ -3,12 +3,12 @@ const isLeapYear = (year) => {
       (year % 4 === 0 && year % 100 !== 0 && year % 400 !== 0) ||
       (year % 100 === 0 && year % 400 === 0)
     );
-  };
-  const getFebDays = (year) => {
-    return isLeapYear(year) ? 29 : 28;
-  };
-  let calendar = document.querySelector('.calendar');
-  const month_names = [
+};
+const getFebDays = (year) => {
+	return isLeapYear(year) ? 29 : 28;
+};
+let calendar = document.querySelector('.calendar');
+const month_names = [
     'January',
     'February',
     'March',
@@ -21,13 +21,13 @@ const isLeapYear = (year) => {
     'October',
     'November',
     'December',
-  ];
-  let month_picker = document.querySelector('#month-picker');
-  const dayTextFormate = document.querySelector('.day-text-formate');
-  const timeFormate = document.querySelector('.time-formate');
-  const dateFormate = document.querySelector('.date-formate');
+];
+let month_picker = document.querySelector('#month-picker');
+const dayTextFormate = document.querySelector('.day-text-formate');
+const timeFormate = document.querySelector('.time-formate');
+const dateFormate = document.querySelector('.date-formate');
   
-  month_picker.onclick = () => {
+month_picker.onclick = () => {
     month_list.classList.remove('hideonce');
     month_list.classList.remove('hide');
     month_list.classList.add('show');
@@ -37,9 +37,9 @@ const isLeapYear = (year) => {
     timeFormate.classList.add('hideTime');
     dateFormate.classList.remove('showtime');
     dateFormate.classList.add('hideTime');
-  };
+};
   
-  const generateCalendar = (month, year) => {
+const generateCalendar = (month, year) => {
     let calendar_days = document.querySelector('.calendar-days');
     calendar_days.innerHTML = '';
     let calendar_header_year = document.querySelector('#year');
@@ -83,10 +83,10 @@ const isLeapYear = (year) => {
       }
       calendar_days.appendChild(day);
     }
-  };
+};
   
-  let month_list = calendar.querySelector('.month-list');
-  month_names.forEach((e, index) => {
+let month_list = calendar.querySelector('.month-list');
+month_names.forEach((e, index) => {
     let month = document.createElement('div');
     month.innerHTML = `<div>${e}</div>`;
   
@@ -102,7 +102,7 @@ const isLeapYear = (year) => {
       dateFormate.classList.remove('hideTime');
       dateFormate.classList.add('showtime');
     };
-  });
+});
   
   (function () {
     month_list.classList.add('hideonce');

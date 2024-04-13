@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import database.DatabaseConnection;
+import jakarta.servlet.http.HttpSession;
 
 public class User {
 
@@ -108,6 +109,16 @@ public class User {
 
     public int getUserID() {
         return userID;
+    }
+    
+    public static int getUserIdFromSession(HttpSession session) {
+        int userId = -1; // Default value if session or user ID not found
+
+        if (session != null && session.getAttribute("userId") != null) {
+            userId = (int) session.getAttribute("userId");
+        }
+
+        return userId;
     }
 
     public void setUserID(int userID) {
