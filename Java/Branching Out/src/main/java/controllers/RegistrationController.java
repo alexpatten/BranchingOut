@@ -35,11 +35,8 @@ public class RegistrationController extends HttpServlet {
         	if (userExists) {
         		response.getWriter().println("Registration failed: Username already exists.");
         	}
-            if (emailExists) {
+        	else if (emailExists) {
             	response.getWriter().println("Registration failed: Email already exists.");
-            }
-            if (isValidPassword) {
-            	response.getWriter().println("Invalid password format.");
             }
             else { response.getWriter().println("Unexpected error"); }
         }
