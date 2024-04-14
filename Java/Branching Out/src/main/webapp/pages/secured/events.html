@@ -20,6 +20,7 @@
     <h1 id="header">Events</h1>
         <div class="contianer" >
             <div class="myEvents">
+            	<!--
                 <h2>Upcoming Events</h2><br>
                 <div class="event" id="event1">
                     <h3>Family BBQ</h3>
@@ -36,6 +37,7 @@
                     <p> 05/10/1994</p>
                     <p>All day</p>
                 </div><br>
+                -->
             </div>
             <div class="calendar">
               <div class="calendar-header">
@@ -112,40 +114,51 @@
     <script type="text/javascript"></script>
     <script>
 	    function updateUpcomingEvents(formData) {
-	        // Parse the form data
-	        var eventData = formData.split('&')
-	            .map(function (pair) {
-	                return pair.split('=');
-	            })
-	            .reduce(function (acc, pair) {
-	                acc[pair[0]] = decodeURIComponent(pair[1].replace(/\+/g, ' '));
-	                return acc;
-	            }, {});
+	        console.log("formData:", formData); // Log formData
 	
-	        // Format the date to MM/dd/yyyy
-	        var eventDateParts = eventData.evDate.split('-');
-	        var eventDate = eventDateParts[1] + '/' + eventDateParts[2] + '/' + eventDateParts[0];
+	        // Check if formData is an array with at least one element
+	        if (!Array.isArray(formData) || formData.length < 1) {
+	            console.error("Invalid formData format.");
+	            return;
+	        }
+	        
+	     	// Clear existing events
+	        $(".myEvents").empty();
+	     	// Append upcoming events header
+	     	$(".myEvents").append("<h2>Upcoming Events</h2>");
 	
-	        // Format the time with AM/PM
-	        var eventTime = formatTime(eventData.evTime);
+	        // Loop through each item in formData array
+	        formData.forEach(function(eventData) {
+	            // Format the date to MM/dd/yyyy
+	            var eventDateParts = eventData.date.split('-');
+	            var eventDate = eventDateParts[1] + '/' + eventDateParts[2] + '/' + eventDateParts[0];
 	
-	        // Assuming the event data follows the format evTitle=EventTitle&evDate=EventDate&evTime=EventTime
-	        var eventTitle = eventData.evTitle;
+	            // Format the time with AM/PM
+	            var eventTime = formatTime(eventData.time);
 	
-	        // Update the upcoming events section with the new event data
-	        var $upcomingEvents = $(".myEvents");
-	        var $newEvent = $("<div class='event'></div>");
-	        var $eventTitle = $("<h3></h3>").text(eventTitle);
-	        var $eventDate = $("<p></p>").text(eventDate);
-	        var $eventTime = $("<p></p>").text(eventTime);
+	            // Extract event title, location, description if needed
+	            var eventTitle = eventData.eventName;
+	            // var eventLocation = eventData.location || "Unknown";
+	            // var eventDescription = eventData.description || "No description provided";
 	
-	        $newEvent.append($eventTitle, $eventDate, $eventTime);
-	        $upcomingEvents.append($newEvent);
+	            // Update the upcoming events section with the new event data
+	            var $upcomingEvents = $(".myEvents");
+	            var $newEvent = $("<div class='event'></div>");
+	            var $eventTitle = $("<h3></h3>").text(eventTitle);
+	            var $eventDate = $("<p></p>").text(eventDate);
+	            var $eventTime = $("<p></p>").text(eventTime);
+	            // var $eventLocation = $("<p></p>").text("Location: " + eventLocation);
+	            // var $eventDescription = $("<p></p>").text("Description: " + eventDescription);
+	
+	            $newEvent.append($eventTitle, $eventDate, $eventTime);
+	            $upcomingEvents.append($newEvent);
+	        });
 	
 	        // Clear the form data after updating events
 	        $("#eventForm")[0].reset();
 	    }
-	
+
+
 	    // Function to format time with AM/PM
 	    function formatTime(time) {
 	        var splitTime = time.split(':');
@@ -158,36 +171,58 @@
 	        return hours + ':' + (minutes < 10 ? '0' : '') + minutes + ' ' + period;
 	    }
     
-	    $(document).ready(function () {
-	        $("#eventForm").submit(function (event) {
-	            event.preventDefault(); // Prevent default form submission
-	
-	            // Serialize form data
-	            var formData = $(this).serialize();
-	
-	            // Send AJAX request
-	            $.ajax({
-	                type: "POST",
-	                url: "../../EventUpdate",
-	                data: formData,
-	                success: function (response) {
-	                    // Handle success response
-	                    console.log(response);
-	                    if (response.includes('Event submitted successfully!')) {
-	                    	// Update the upcoming events
-	                        updateUpcomingEvents(formData);
-	                    } else {
-	                        alert("Failed to submit event.");
-	                    }
-	                },
-	                error: function (xhr, status, error) {
-	                    // Handle error response
-	                    console.error("Error:", error);
-	                    alert("An error occurred while submitting the event.");
-	                }
-	            });
-	        });
-	    });
+	 	// Function to fetch event data and update upcoming events
+        function fetchEventData() {
+            // Send AJAX GET request to fetch event data
+            $.ajax({
+                type: "GET",
+                url: "../../EventUpdate", // URL mapped to your servlet
+                success: function (data) {
+                    // Handle success response and update your web page with the fetched data
+                    console.log("data:" & data); // Log the fetched data for debugging
+                    updateUpcomingEvents(data); // Assuming updateUpcomingEvents function handles the data
+                },
+                error: function (xhr, status, error) {
+                    // Handle error response
+                    console.error("Error:", error);
+                    alert("An error occurred while fetching event data.");
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            // Initial load of events
+            fetchEventData();
+
+            $("#eventForm").submit(function (event) {
+                event.preventDefault(); // Prevent default form submission
+
+                // Serialize form data
+                var formData = $(this).serialize();
+
+                // Send AJAX request to submit event data
+                $.ajax({
+                    type: "POST",
+                    url: "../../EventUpdate",
+                    data: formData,
+                    success: function (response) {
+                        // Handle success response
+                        console.log(response);
+                        if (response.includes('Event submitted successfully!')) {
+                            // Update the upcoming events
+                            fetchEventData(); // Fetch updated event data after submission
+                        } else {
+                            alert("Failed to submit event.");
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle error response
+                        console.error("Error:", error);
+                        alert("An error occurred while submitting the event.");
+                    }
+                });
+            });
+        });
     </script>
 </body>
 
